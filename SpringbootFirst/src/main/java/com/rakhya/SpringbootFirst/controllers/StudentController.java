@@ -19,7 +19,7 @@ public class StudentController {
 	private StudentService studentService;
 	
 	@RequestMapping(value="/webapi/students/{id}", method=RequestMethod.GET)
-	public Student getStudent(@PathVariable int id) {
+	public Student getStudent(@PathVariable("id") int id) {
 		return studentService.getStudent(id);
 	}
 	
@@ -43,7 +43,7 @@ public class StudentController {
 		studentService.removeStudent(id);
 	}
 	
-	@RequestMapping(value="webapi/students/{name}", method=RequestMethod.GET)
+	@RequestMapping(value="webapi/students/filter/{name}", method=RequestMethod.GET)
 	public List<Student> getStudentByName(@PathVariable("name") String name){
 		return studentService.getStudentsByName(name);
 	}
