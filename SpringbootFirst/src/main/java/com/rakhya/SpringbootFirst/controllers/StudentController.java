@@ -25,6 +25,7 @@ public class StudentController {
 	
 	@RequestMapping(value="/webapi/addstudent", method=RequestMethod.POST)
 	public void addStudent(@RequestBody Student student) {
+	
 		studentService.addStudent(student);
 	}
 	
@@ -43,8 +44,19 @@ public class StudentController {
 		studentService.removeStudent(id);
 	}
 	
-	@RequestMapping(value="webapi/students/filter/{name}", method=RequestMethod.GET)
+	@RequestMapping(value="/webapi/students/filer/{name}", method=RequestMethod.GET)
 	public List<Student> getStudentByName(@PathVariable("name") String name){
 		return studentService.getStudentsByName(name);
 	}
+	
+	@RequestMapping(value="/webapi/classes/{classid}/students", method=RequestMethod.GET)
+	public List<Student> getStudentsByClass(@PathVariable("classid") int id){
+		return studentService.getStudentsByClass(id);
+	}
+	
+	@RequestMapping(value="/webapi/classes/{classid}/students/{studentid}", method=RequestMethod.PUT)
+	public void mapClasstoStudent(@PathVariable("classid") int classroomId, @PathVariable("studentid") int studentId) {
+		studentService.addClasstoStudent(classroomId, studentId);
+	}
+
 }
